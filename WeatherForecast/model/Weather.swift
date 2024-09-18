@@ -37,7 +37,6 @@ struct Day: Codable {
     var maxtemp_c: Double?
     var mintemp_c: Double?
     var maxwind_kph: Double?
-    var minwind_kph: Double?
     var avghumidity: Int?
     var condition: Condition?
     

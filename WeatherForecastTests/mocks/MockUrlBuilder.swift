@@ -10,7 +10,7 @@ import Foundation
 
 class MockUrlBuilder: WeatherUrlBuilder {
     
-    func build(city: String) -> String {
+    func build(city: String) -> String? {
         guard !shouldSetError else {
             return ""
         }

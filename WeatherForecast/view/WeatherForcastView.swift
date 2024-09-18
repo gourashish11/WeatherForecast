@@ -24,7 +24,6 @@ struct WeatherForcastView: View {
             let minTemp = forcastDay.day?.mintemp_c?.toTwoDecimal() ?? ""
             let maxTemp = forcastDay.day?.maxtemp_c?.toTwoDecimal() ?? ""
             
-            let minWind = forcastDay.day?.minwind_kph?.toTwoDecimal() ?? ""
             let maxWind = forcastDay.day?.maxwind_kph?.toTwoDecimal() ?? ""
             
             let humidity = forcastDay.day?.avghumidity
@@ -59,18 +58,6 @@ struct WeatherForcastView: View {
                     Spacer()
                     
                     Text("\(maxTemp)°C")
-                        .font(.callout)
-                        .multilineTextAlignment(.trailing)
-                }.padding()
-                
-                HStack {
-                    Text("Minimum wind:")
-                        .font(.callout)
-                        .multilineTextAlignment(.leading)
-                    
-                    Spacer()
-                    
-                    Text("\(minWind)KMPH")
                         .font(.callout)
                         .multilineTextAlignment(.trailing)
                 }.padding()
