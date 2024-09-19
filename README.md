@@ -8,6 +8,10 @@ WeatherForecastApp provides the current weather forecast for any city and includ
 1. Xcode 15 or later.
 2. macOS Ventura 13.6.9 or later.
 
+## Configuration
+1. Clone the project from gihub or Download the zip
+2. Unzip the project and navigate to WeatherForecast folder
+
 ## How to run the APP
 1. After installing the prerequisites, navigate to the WeatherForecast folder and open the WeatherForecast.xcodeproj file. This will launch the project in Xcode.
 2. Select a simulator from the device selector in the toolbar.
@@ -29,4 +33,13 @@ WeatherForecastApp provides the current weather forecast for any city and includ
 4. You can view individual test cases and their results in the Test Navigator (accessible via the left-side panel in Xcode).
 
 5. Alternatively, you can execute specific tests by clicking on the diamond symbol next to individual test methods or classes in the code editor.
+
+
+## Approach
+Architecture: MVVM
+UI: SwiftUI
+Rective Framework: Combine
+Netowork Layer: URLSession
+Tests: XCTestCase
+Technology Stack: SwiftUI, Combine
 
