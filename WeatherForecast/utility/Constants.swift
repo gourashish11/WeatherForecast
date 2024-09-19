@@ -12,4 +12,5 @@ struct WeatherForecast {
     static let baseUrl = "api.weatherapi.com"
     static let path = "/v1/forecast.json"
     static let days = "5"
+    static let expiredHours = 4
 }

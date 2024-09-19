@@ -15,13 +15,26 @@ class WeatherForcastViewModel: ObservableObject {
     @Published var errorMessage: String?
     private let weatherForcastService: WeatherForcastService
     private var cancellables = Set<AnyCancellable>()
+    private let storageManager: WeatherStorageManager
     
-    init(weatherForcastService: WeatherForcastService = WeatherForcastAPIService()) {
+    init(weatherForcastService: WeatherForcastService = WeatherForcastAPIService(),
+         weatherStorageManager: WeatherStorageManager = WeatherStorage()) {
         self.weatherForcastService = weatherForcastService
+        self.storageManager = weatherStorageManager
     }
     
     func fetchWeatherDetails() {
         hideKeyboard()
+        
+        if let weather = loadWeather(city: city), let lastFetchTime = weather.lastFetchTime, !isWeatherDataExpired(from: lastFetchTime) {
+            currentWeather = weather
+            errorMessage = nil
+        } else {
+            fetchWeather()
+        }
+    }
+    
+    private func fetchWeather() {
         weatherForcastService.fetchWeather(for: city)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -32,10 +45,17 @@ class WeatherForcastViewModel: ObservableObject {
                     self?.errorMessage = "No results found. Please make sure city is correct"
                     return
                 }
-                self?.currentWeather = weatherResponse
-                self?.errorMessage = nil
+                self?.handleSuccess(weatherResponse: weatherResponse)
             })
             .store(in: &cancellables)
+    }
+    
+    private func handleSuccess(weatherResponse: WeatherResponse) {
+        var weather = weatherResponse
+        weather.lastFetchTime = Date()
+        storeWeatherData(weather: weather)
+        currentWeather = weather
+        errorMessage = nil
     }
     
     private func handleCompletion(_ completion: Subscribers.Completion<Error>) {
@@ -69,6 +89,25 @@ class WeatherForcastViewModel: ObservableObject {
     
     private func hideKeyboard() {
         UIApplication.shared.endEditing()
+    }
+    
+    private func storeWeatherData(weather: WeatherResponse) {
+        storageManager.saveWeather(weather, city: city)
+    }
+    
+    private func loadWeather(city: String) -> WeatherResponse? {
+        return storageManager.loadWeather(city: city)
+    }
+    
+    private func isWeatherDataExpired(from lastFetchDate: Date) -> Bool {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour], from: lastFetchDate, to: Date())
+        
+        guard let hours = components.hour else {
+            return false
+        }
+        
+        return hours >= WeatherForecast.expiredHours
     }
     
 }

@@ -10,6 +10,7 @@ import Foundation
 struct WeatherResponse: Codable {
     var current: CurrentWeather?
     var forecast: Forecast?
+    var lastFetchTime: Date?
 }
 
 struct Forecast : Codable {
