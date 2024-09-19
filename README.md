@@ -36,10 +36,10 @@ WeatherForecastApp provides the current weather forecast for any city and includ
 
 
 ## Approach
-Architecture: MVVM
-UI: SwiftUI
-Rective Framework: Combine
-Netowork Layer: URLSession
-Tests: XCTestCase
-Technology Stack: SwiftUI, Combine
+1. Architecture: MVVM
+2. UI: SwiftUI
+3. Rective Framework: Combine
+4. Netowork Layer: URLSession
+5. Tests: XCTestCase
+6. Technology Stack: SwiftUI, Combine
 
