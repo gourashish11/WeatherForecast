@@ -43,3 +43,11 @@ WeatherForecastApp provides the current weather forecast for any city and includ
 5. Tests: XCTestCase
 6. Technology Stack: SwiftUI, Combine
 
+## App UI
+
+![Simulator Screenshot - iPhone 15 Pro - 2024-09-19 at 15 28 28](https://github.com/user-attachments/assets/974c7915-5386-4695-b66c-df14e3eba5f3)
+
+![Simulator Screenshot - iPhone 15 Pro - 2024-09-19 at 15 34 46](https://github.com/user-attachments/assets/363af47b-b5d9-4a14-808b-bc85cb4b0371)
+
+
+
