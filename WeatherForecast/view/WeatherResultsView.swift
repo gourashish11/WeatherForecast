@@ -13,80 +13,40 @@ struct WeatherResultsView: View {
     var body: some View {
         VStack {
             let temp = viewModel.currentWeather?.current?.temp_c ?? 0
-            let wind = viewModel.currentWeather?.current?.wind_kph ?? 0
-            let humidity = viewModel.currentWeather?.current?.humidity ?? 0
             let description = viewModel.currentWeather?.current?.condition?.text ?? ""
             let feelslike = viewModel.currentWeather?.current?.feelslike_c ?? 0
             
-            Text("Weather in \(viewModel.city)")
-                .font(.title2)
-                .foregroundColor(.blue)
-                .padding(5)
             
-            HStack {
-                Text("tempture:")
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
+            Text("\(viewModel.city)")
+                .font(.title3)
+                .padding(10)
+            
+            ZStack {
+                Circle()
+                    .stroke(Color.blue, lineWidth: 1)
+                    .background(Circle().fill(Color.clear))
+                    .frame(width: 120, height: 120)
                 
                 Text("\(temp.toTwoDecimal())C")
-                    .font(.title3)
-                    .multilineTextAlignment(.trailing)
+                    .font(.title)
+                    .foregroundColor(.blue)
+                    .multilineTextAlignment(.center)
+                    .padding(5)
             }
-            .padding(5)
             
-            HStack {
-                Text("wind:")
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-                Text("\(wind.toTwoDecimal())KMPH")
-                    .font(.title3)
-                    .multilineTextAlignment(.trailing)
-            }
-            .padding(5)
             
-            HStack {
-                Text("humidity:")
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-                Text("\(humidity)")
-                    .font(.title3)
-                    .multilineTextAlignment(.trailing)
-            }
-            .padding(5)
             
-            HStack {
-                Text("description:")
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-                Text("\(description)")
-                    .font(.title3)
-                    .multilineTextAlignment(.trailing)
-            }
-            .padding(5)
+            Text("\(description)")
+                .font(.title3)
+                .foregroundColor(.green)
+                .multilineTextAlignment(.center)
+                .padding(5)
             
-            HStack {
-                Text("feels like:")
-                    .font(.title2)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-                Text("\(feelslike.toTwoDecimal())")
-                    .font(.title2)
-                    .multilineTextAlignment(.trailing)
-            }
-            .padding(5)
+            Text("Feels like \(feelslike.toTwoDecimal())")
+                .font(.title2)
+                .multilineTextAlignment(.center)
+                .padding(5)
+            
             
             NavigationLink(destination: WeatherForcastView(viewModel: viewModel)) {
                 Text("Forecast for upcoming 5 days")
@@ -101,7 +61,7 @@ struct WeatherResultsView: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.blue, lineWidth: 2)
+                .stroke(Color.blue, lineWidth: 0.5)
         )
         .padding()
         

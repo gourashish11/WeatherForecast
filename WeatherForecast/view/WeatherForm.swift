@@ -16,7 +16,6 @@ struct WeatherForm: View {
             Section(header: Text("Enter city")) {
                 HStack {
                     TextField("Enter city name", text: $viewModel.city)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .disableAutocorrection(true)
                         .onChange(of: viewModel.city, { oldValue, newValue in
                             if newValue.isEmpty {
@@ -33,6 +32,7 @@ struct WeatherForm: View {
                     .disabled(viewModel.shouldDisable())
                     
                 }
+
                
             }
             
